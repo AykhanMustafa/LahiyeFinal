@@ -1,0 +1,348 @@
+﻿
+@{
+    ViewData["Title"] = "Detail";
+}
+@model ProductDetailViewModel
+
+
+<main style="background-color: #ecf0f3;">
+    <section>
+        <div id="down-search" class="down-search">
+            <div class="search">
+                <div class="search-form">
+                    <div class="row">
+                        <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-10">
+                            <input style="width: 1rem;" type="search" placeholder="Axtarış...">
+                        </div>
+                        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+    <section>
+        <div style="background-color: #f9f9f9;" class="siyahi">
+            <div class="container">
+                <div class="siyahi-top">
+                    <a asp-action="index" asp-controller="home"><i class="fa-solid fa-house-chimney"></i></a></i> <i class="fa-solid fa-angle-right"></i>
+                    <a>
+                        <span>
+                            @Model.Product.Name
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="detail">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-12">
+                        <!-- Place somewhere in the <body> of your page -->
+                        <div id="slider" class="flexslider">
+                            <ul class="slides">
+                                @foreach (var item in Model.Product.ProductImages)
+                                {
+                                    <li>
+                                        <img src="~/uploads/product/@item.Image"
+                                             alt="">
+                                    </li>
+                                }
+
+                                <!-- items mirrored twice, total of 12 -->
+                            </ul>
+                        </div>
+                        <div id="carousel" class="flexslider">
+                            <ul class="slides">
+                                @foreach (var item in Model.Product.ProductImages)
+                                {
+                                    <li>
+                                        <img src="~/uploads/product/@item.Image"
+                                             alt="">
+                                    </li>
+                                }
+
+                                <!-- items mirrored twice, total of 12 -->
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-12">
+                        <div class="detail-melumat">
+                            <div class="mehsul-name">
+                                <h5>@Model.Product.Name </h5>
+                                <a style="color:black" asp-controller="product" asp-action="AddtoWish" asp-route-id="@Model.Product.Id">
+                                    <i class="fa-solid fa-heart"></i>
+                                </a>
+                            </div>
+                            <div class="mehsul-star">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <span>
+                                    (<span>@Model.Product.ProductComments.Where(x => x.Status).Count()</span> Şərh
+                                    )
+                                </span>
+                            </div>
+                            <div class="mehsul-price">
+                                <h4>@((Model.Product.SalePrice*(1-(Model.Product.DiscountPrice/100))).ToString("#.##")) ₼</h4>
+
+                                <a data-id="@Model.Product.Id" asp-controller="product" asp-action="AddtoBasket" asp-route-id="@Model.Product.Id" class="btn add-basket"><i class="fa-solid fa-cart-arrow-down"></i> Səbətə at</a>
+                            </div>
+                            <div class="mehsul-btn">
+                                @if (Model.Product.IsInterestFree == true)
+                                {
+                                    <a style="color: #df2027;margin-right: 0.7rem;" class="btn">24ay / 0% / @(((Model.Product.SalePrice*(1-(Model.Product.DiscountPrice/100)))/24).ToString("#.##")))₼</a>
+
+                                }
+                                <a class="btn"><i class="fa-solid fa-phone-volume"></i>Sizə Zəng edək?</a>
+                           
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="aciqlama">
+            <div class="container">
+                <div class="row">
+                    <a href="">Açıqlama</a>
+                    <hr>
+                </div>
+                <div class="aciqlama-text">
+                    <p><h6>Dizayn</h6>:@Model.Product.Design.Name</p>
+                </div>
+                <div class="aciqlama-text">
+                    <p>
+                        <h6>Rəng</h6>: 
+                        @for(int i=0;i<Model.Product.ProductColors.Count;i++)
+                        {
+                            @Model.Product.ProductColors[i].Color.Name if(i != Model.Product.ProductColors.Count-1) {<span>,</span> }
+                        }
+                    </p>
+                </div>
+                <div class="aciqlama-text">
+                    <p>
+                        <h6>Material</h6>:
+                        @for (int i = 0; i < Model.Product.ProductMatreals.Count; i++)
+                        {
+                            @Model.Product.ProductMatreals[i].Matreal.Name if (i != Model.Product.ProductMatreals.Count - 1)
+                            {<span>,</span>}
+                        }
+                    </p>
+                </div>
+                <div class="aciqlama-text">
+                    <h6>Üstünlüklər</h6>
+                </div>
+                <p>
+                    @Html.Raw(Model.Product.Preference)
+                </p>
+                <div class="aciqlama-text">
+                    <h6>Ölçülər</h6>
+                </div>
+
+                <p>
+                    @Html.Raw(Model.Product.Size)
+                </p>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="comment">
+            <div class="container">
+                <div class="row">
+                    <h6>Məhsul dəyərləndirməsi(<span>@Model.Product.ProductComments.Where(x => x.Status).Count()</span>)</h6>
+
+                    <div class="accordion" id="accordionExample">
+
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Şərhlər
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    @foreach (var item in Model.Product.ProductComments)
+                                    {
+                                        if (item.Status == true)
+                                        {
+                                            <strong>@item.Name @item.SurName</strong>
+                                            <p>@item.Text</p>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <input type="hidden" name="productId" form="add-comment" value="@Model.Product.Id" />
+                @await Html.PartialAsync("_CommentForProductPartial", Model.ProductComment)
+            </div>
+        </div>
+    </section>
+    @if (Model.News.Count != 0 && Model != null)
+    {
+        <section>
+            <div class="favorite" style="background-color: #f9f9f9;">
+                <div class="container">
+                    <div class="row">
+                        <h6>
+                            Siz həmçinin bu məhsuları bəyənə bilərsiniz
+                        </h6>
+                    </div>
+                    <hr>
+                    <div class="owl-carousel owl-theme">
+                        @foreach (var item in Model.News)
+                        {
+                            if (item.SubCategoryId == Model.Product.SubCategoryId && item.Id != Model.Product.Id)
+                            {
+                                <div class="item">
+
+                                    <div class="card">
+                                        <div class="favorite-image">
+                                            <a asp-action="detail" asp-controller="product" asp-route-id="@item.Id">
+                                                <img src="~/uploads/product/@item.ProductImages.FirstOrDefault(x=>x.IsPoster==true)?.Image"
+                                                     class="card-img-top" alt="...">
+                                            </a>
+                                        </div>
+                                        <div class="credit-tag">
+                                            <div class="price">
+                                                <span>Ayda <br> 64</span>
+                                            </div>
+                                            <div class="tag">
+                                                <span>24 Ay Faizsiz</span>
+                                            </div>
+                                        </div>
+                                        <a style="color:black" asp-controller="product" asp-action="AddtoWish" asp-route-id="@item.Id">
+                                            <i class="fa-solid fa-heart"></i>
+                                        </a>
+
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9">
+                                                    <span>@item.Name</span>
+                                                    <div class="row">
+                                                        <div class="favorite-price">
+                                                            <div class="price">
+                                                                <span class="oldprice">@((item.SalePrice).ToString("#.##"))₼</span> <span class="newprice">@((item.SalePrice*(1-(item.DiscountPrice/100))).ToString("#.##"))</span>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+
+                                                    <div class="kompaniya">
+                                                        <img src="https://madeyra.com/catalog/view/theme/madeyra/images/icons/pay-later.png.pagespeed.ce._ncBfaI94O.png"
+                                                             alt="">
+                                                        <div class="img-txt">
+                                                            <span>indi al</span>
+                                                            <span>2 ay</span>
+                                                            <span>sonra ödə</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+    }
+    <section>
+        <div class="favorite" style="background-color: #f9f9f9;">
+            <div class="container">
+                <div class="row">
+                    <h6>
+                        Son baxdıqlarınız
+                    </h6>
+                </div>
+                <hr>
+                <div class="owl-carousel owl-theme">
+                    @foreach (var order in Model.EndOrders)
+                    {
+                        @foreach (var orderitem in order.OrderItems)
+                        {
+                            <div class="item">
+
+                                <div class="card">
+                                    <div class="favorite-image">
+                                        <a asp-action="detail" asp-controller="product" asp-route-id="@orderitem.Product.Id">
+                                            <img src="~/uploads/product/@orderitem.Product.ProductImages.FirstOrDefault(x=>x.IsPoster==true)?.Image"
+                                                 alt="">
+                                        </a>
+                                    </div>
+                                    @if (orderitem.Product.IsInterestFree == true)
+                                    {
+                                        <div class="credit-tag">
+                                            <div class="price">
+                                                <span>Ayda <br> 64</span>
+                                            </div>
+                                            <div class="tag">
+                                                <span>24 Ay Faizsiz</span>
+                                            </div>
+                                        </div>
+                                    }
+                                    <i class="fa-solid fa-heart"></i>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9">
+                                                <span>@orderitem.ProdName</span>
+                                                <div class="row">
+                                                    <div class="favorite-price">
+                                                        <div class="price">
+                                                            <span class="oldprice">@((orderitem.Product.SalePrice).ToString("#.##"))₼</span> <span class="newprice">@((orderitem.Product.SalePrice*(1-(orderitem.Product.DiscountPrice/100))).ToString("#.##"))</span>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                                               
+                                                <div class="kompaniya">
+                                                    <img src="https://madeyra.com/catalog/view/theme/madeyra/images/icons/pay-later.png.pagespeed.ce._ncBfaI94O.png"
+                                                         alt="">
+                                                    <div class="img-txt">
+                                                        <span>indi al</span>
+                                                        <span>2 ay</span>
+                                                        <span>sonra ödə</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+</main>
+

@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewData["Title"] = "Kampaniyalar";
+}
+@model List<Campagain>
+    <main>
+        <section>
+            <div class="kampaniyalar">
+                <div class="container">
+                    <div class="row">
+                        @foreach (var item in Model)
+                        {
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="kampaniya">
+                                    <div class="kampaniya-img">
+                                        <img src="~/uploads/campagain/@item.Image" alt="">
+                                        <div class="kampaniya-time">
+                                            <span>
+                                                @if (item.StartTime.Hour < item.EndTime.Hour)
+                                                {
+                                                    @((item.EndTime.Day-item.StartTime.Day).ToString())<span>gün</span> @((item.EndTime.Hour - item.StartTime.Hour)) <span>saat</span> 
+                                                                                                    }
+                                                                    else
+                                                                    {
+                                                                        @((item.EndTime.Day-item.StartTime.Day-1).ToString())<span>gün</span> @((item.EndTime.Hour - item.StartTime.Hour)*(-1)) <span>saat</span>
+
+                                                                                                                        }
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="kampaniya-name">
+                                        <p>@item.Title</p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>

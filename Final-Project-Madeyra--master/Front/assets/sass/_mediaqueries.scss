@@ -1,0 +1,250 @@
+// Extra small devices (portrait phones, less than 576px)
+
+
+// Small devices (landscape phones, less than 768px)
+
+
+// Medium devices (tablets, less than 992px)
+
+
+// Large devices (desktops, less than 1200px)
+@media (min-width: 1199.98px){
+    .container{
+        max-width: 1320px;
+    }
+}
+@media (max-width: 1199.98px) { 
+  .kampaniyalar{
+      padding-left: 19rem !important;
+  }
+    .register-form{
+        width: 70% !important;
+    }
+    #headtop{
+        display: none;
+    }
+    .header-bottom{
+        #menu{
+            display: none;
+        }
+        
+        .search{
+            display: flex;
+            justify-content: start;
+        }
+        .right{
+            display: flex;
+            justify-content: end;
+            .sebet{
+                margin-right: 1.4rem;
+            }
+        }
+    }
+    .mehsul{
+        padding: 0% !important;
+        .col-xl-2{
+            padding-left: 1.1rem !important;
+        }
+        .still{
+            display: none !important;
+        }
+    }
+ }
+ 
+ @media (max-width: 991.98px) { 
+    
+    .header-bottom{
+        display: none !important;
+    }
+    .komekci-class{
+        
+        .col-xl-2{
+            display: none !important;
+        }
+    }
+ 
+.hero{
+    .col-xl-12{
+        padding: 0% !important;
+    }
+}
+   .mehsul{
+       .col-xl-2{
+           padding: 0% !important;
+       }
+       .col-xl-10{
+           padding: 0% !important;
+       }
+   }
+   .kampaniyalar{
+       
+    padding-left: 0% !important;
+}
+#merhele-sebet{
+    display: none !important;
+}
+  }
+
+  @media (max-width: 767.98px) { 
+      .container{
+          width: 80%;
+          
+      }
+      
+    .register-form{
+        width: 90% !important;
+
+        .form{
+            
+            .col-xl-3{
+                display: flex;
+                justify-content: start !important;
+                left: 0%;
+                
+            }
+            .col-xl-9{
+                .form1-input{
+                    width: 100% !important;
+                    height: 2.8rem !important;
+                }
+            }
+        }
+        
+    }
+  
+  html{
+      font-size: 14px;
+  }
+  .hesab-class{
+    .col-lg-3{
+        display: flex;
+        justify-content: center;
+        margin-bottom: 1rem;
+        
+        .hesab-menu{
+            width: 100%;
+            margin-bottom: 1.2rem;
+        }
+    }
+    
+    .col-lg-9{
+        display: flex;
+        justify-content: center;
+        padding: 0% !important;
+        .melumatlarim{
+            width: 100% !important;
+            .col-xl-10{
+                padding: 0% 3%;
+            }
+            input{
+                width: 100%;
+            }
+        }
+    }
+   }
+   .basliq{
+       display: none !important;
+   }
+  
+ }
+
+// Extra large devices (large desktops)
+// No media query since the extra-large breakpoint has no upper bound on its width
+@media (max-width: 575.98px) { 
+    
+    .komekci-class{
+          .text{
+              padding: 0% !important;
+              p{
+                  font-size: 17px !important;
+              }
+          }
+          .text-title{
+              h6{
+                margin: 0% !important;
+                padding: 0% !important;
+                margin-bottom: -0.2rem !important;
+                margin-top: 1rem !important;
+              }
+          }
+        .termin-text{
+            padding: 0% !important;
+        }
+        p{
+            padding: 0% !important;
+            margin: 0% !important;
+        }
+        .container{
+            width: 100% !important;
+        }
+      }
+    .container{
+        width: 96% !important;
+    }
+    .row {
+        --bs-gutter-x: 5% !important;
+    }
+    .cards{
+        
+        .card{
+           margin: 2%  !important;
+        }
+    }
+    .reclam{
+        .col-xl-4{
+            margin-top: 2rem;
+            .reclam-image{
+                width: 85%;
+            }
+        }
+       
+    }
+    .register-form{
+        width: 90% !important;
+    }
+    .card-title{
+        font-size: 13px !important;
+    }
+    #fixed-top{
+        width: 2.6rem;
+        height: 2.6rem;
+        margin-bottom: 1rem;
+        margin-right: 2rem;
+    }
+    html{
+        font-size: 16px;
+    }
+   .hesab-class{
+    .col-lg-3{
+        display: flex;
+        justify-content: center;
+        margin-bottom: 1rem;
+        .hesab-menu{
+            width: 100%;
+            margin-bottom: 1.2rem;
+        }
+    }
+    
+    .col-lg-9{
+        display: flex;
+        justify-content: center;
+        padding: 0% !important;
+        .melumatlarim{
+            width: 100% !important;
+        }
+    }
+   }
+ }
+ @media (min-width: 991.98px){
+    
+    .header-mobil{
+        display: none !important;
+    }
+    .down-search{
+        display: none !important;
+    }
+    // .container{
+    //     max-width: 100%;
+    // }
+    
+}

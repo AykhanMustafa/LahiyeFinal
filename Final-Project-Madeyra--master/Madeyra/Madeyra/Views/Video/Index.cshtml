@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewData["Title"] = "Videolar";
+}
+@model List<Video>
+    <main>
+        <div class="missiya komekci-class">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-2 col-lg-3 col-md-3 col-sm-3 col-3">
+                        @await Html.PartialAsync("_HelpermenuPartial")
+                    </div>
+                    <div class="col-xl-10 col-lg-9 col-md-12 col-sm-12 col-12">
+                        <div class="row">
+                            @foreach (var item in Model)
+                            {
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 pl-4 pr-4">
+                                    @Html.Raw(item.VideoUrl)
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </main>
+   
